@@ -1,0 +1,16 @@
+<mat-card class="smallExpDateCard text-center" [ngClass]="expDateClass">
+    <img *ngIf="showProductData" [routerLink]="['/products/', expirationDate.product.id]" 
+        mat-mat-card-image src={{expirationDate.product.displayImage()}} alt="Photo of {{expirationDate.product.name}}">
+    <mat-card-header [routerLink]="['/expirationDates/', expirationDate.id]">
+        <mat-card-title class="mt-3">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{expirationDate.endDate | date: 'longDate'}}
+        </mat-card-title>
+    </mat-card-header>
+    <hr *ngIf="showProductData">
+    <mat-card-content *ngIf="showProductData" class="p-2">
+        <div class="productTitle fullWidth" [routerLink]="['/products/', expirationDate.product.id]">
+            <div>{{expirationDate.product.name}}</div>
+        </div>
+    </mat-card-content>
+</mat-card>

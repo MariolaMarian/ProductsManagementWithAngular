@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">{{employee.firstName}} {{employee.lastName}}</div>
+        <div class="col">
+            <span *ngFor="let role of employee.roles" [innerHTML]="showIcon(role)" [ngbTooltip]="role" class="roleIcon">
+            </span>
+        </div>
+        <div class="col">
+            <button mat-raised-button color="primary" (click)="openEditDialog()"><i class="material-icons">mode_edit</i></button>
+        </div>
+</div>

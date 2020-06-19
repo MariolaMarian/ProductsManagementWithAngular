@@ -1,0 +1,38 @@
+
+  .productImg{
+    overflow: hidden;
+    position: relative;
+  }
+
+  .productImg img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
+  .editIconButton{
+    background-color: violet;
+    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0.8rem;
+    right: 1rem;
+    outline: none;
+  }
+
+  .editIconButton i {
+    transform: translate(-10%, -25%);
+  }
+
+  .expirationDatesContainer{
+    position: relative;
+  }
+
+  .expirationDatesAddButton {
+    position: absolute;
+    top: -1%;
+    right: 1%;
+    outline: none;
+  }

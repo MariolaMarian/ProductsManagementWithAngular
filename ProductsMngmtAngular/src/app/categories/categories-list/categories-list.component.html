@@ -1,0 +1,18 @@
+<div class="container">
+
+    <div class="row listHeader">
+        <div class="col">
+            <button mat-raised-button color="accent" (click)="showAddCategoryDialog()"><i class="fa fa-plus"></i></button></div>
+    </div>
+
+    <hr>
+
+    <div class="row categoryContainer" *ngFor="let category of categories" (click)="highlight(category.id)" [ngClass]="{'highlighted':category.id==highlightedId}">
+        <div class="col-12 col-md-6">{{category.name}}</div>
+        <div class="col-4 col-md-2"><button mat-raised-button color="accent" [routerLink]="['/products']" [queryParams]="{categoriesIds: category.id}">Products &#40;{{category.productsCount}}&#41;</button></div>
+        <div class="col-4 col-md-2"><button mat-raised-button color="primary">Employees</button></div>
+        <div class="col-4 col-md-2">
+            <button mat-button color="warn" (click)="deleteCategory(category)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</div>

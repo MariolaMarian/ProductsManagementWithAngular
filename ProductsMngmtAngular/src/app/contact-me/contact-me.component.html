@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <mat-card>
+                <mat-card-header class="text-center">
+                    <mat-card-title>Want to have this solution in your company? Contact us</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <form #contactForm="ngForm" (ngSubmit)="sendContactMe()">
+                        <mat-form-field floatLabel="auto" class="fullWidth">
+                            <mat-label>Company</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                        <mat-form-field floatLabel="auto" class="fullWidth">
+                            <mat-label>Owner name</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                        <mat-form-field floatLabel="auto" class="fullWidth">
+                            <mat-label>Phone</mat-label>
+                            <input matInput type="tel">
+                        </mat-form-field>
+                        <mat-form-field floatLabel="auto" class="fullWidth">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="email">
+                        </mat-form-field>
+                        <mat-form-field floatLabel="auto" class="fullWidth">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput maxlength=400></textarea>
+                        </mat-form-field>
+                        <div class="fullWidth">
+                            <mat-checkbox>Agree with RODO</mat-checkbox></div>
+                        <div class="fullWidth text-center">
+                            <button mat-raised-button color="accent">Send</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<h2 *ngIf="!this.data" mat-dialog-title justify-content-center>Register employee</h2>
+<h2 *ngIf="this.data" mat-dialog-title justify-content-center>Edit employee data</h2>
+<hr>
+<mat-dialog-content>
+  <form [formGroup]="registerForm">
+
+    <div formGroupName="personalData">
+
+      <input type="hidden" formControlName="id">
+
+      <mat-form-field class="fullWidth">
+        <mat-label>First name</mat-label>
+        <input matInput type="text" placeholder="First name" autocomplete="given-name" formControlName="firstName">
+        <mat-error *ngIf="firstName.errors && firstName.errors.required">This field is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="fullWidth">
+        <mat-label>Last name</mat-label>
+        <input matInput type="text" placeholder="Last name" autocomplete="family-name" formControlName="lastName">
+        <mat-error *ngIf="lastName.errors && lastName.errors.required">This field is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="fullWidth">
+        <mat-label>Phone</mat-label>
+        <input matInput type="tel" placeholder="123123123" autocomplete="tel-local" minlength="9" maxlength="9" formControlName="phone">
+        <mat-error *ngIf="phone.errors && phone.errors.required">This field is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="fullWidth" *ngIf="!this.data">
+        <mat-label>Login</mat-label>
+        <input matInput type="text" placeholder="Username" autocomplete="userName" formControlName="userName">
+        <mat-error *ngIf="userName.errors && userName.errors.required">This field is required</mat-error>
+        <mat-error *ngIf="userName.errors && userName.errors.cantContain">This name is forbidden</mat-error>
+        <mat-error *ngIf="userName.errors && userName.errors.noEmptySpaces">Value can't contain empty spaces</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="fullWidth" *ngIf="!this.data">
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" autocomplete="current-password" formControlName="password">
+        <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" (click)="hide = !hide" type="button" class="transparentBackground">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.errors && password.errors.required">This field is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div formGroupName="roles">
+      <div>
+        <mat-checkbox formControlName="isManager">Give manager role</mat-checkbox>
+      </div>
+      <div>
+        <mat-checkbox formControlName="isTeamLeader">Give team leader role</mat-checkbox>
+      </div>
+    </div>
+
+    <div formGroupName="selectedCategories">
+      <mat-form-field class="fullWidth">
+        <mat-label>Responsible for</mat-label>
+        <mat-select multiple formControlName="categories" disableOptionCentering [compareWith]="compareCategories" required>
+          <mat-option *ngFor="let category of categoriesToSelect" [value]="category">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="selectedCategories.errors && selectedCategories.errors.required">At least one category must be selected</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group text-center">
+      <button mat-raised-button color="link" mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="accent" (click)="register()" [disabled]="!registerForm.valid"><span *ngIf="!this.data">Register</span><span *ngIf="this.data">Update</span></button>
+    </div>
+
+  </form>
+</mat-dialog-content>

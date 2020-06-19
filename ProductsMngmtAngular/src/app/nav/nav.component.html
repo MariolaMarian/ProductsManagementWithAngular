@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">Products Management</a>
+
+
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" [attr.aria-expanded]="!isMenuCollapsed" aria-controls="navbarContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarContent" [ngbCollapse]="isMenuCollapsed">
+    <ul class="navbar-nav md-auto">
+      <li class="nav-item align-self-center">
+        <app-login class="ml-auto mr-2"></app-login>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/products']">Products</a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/expirationDates']">Dates</a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/categories']">Categories</a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/reports']">Reports</a>
+      </li>
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/employees']">Employees</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>

@@ -1,0 +1,13 @@
+.countInput{
+    width: 5em;
+    margin-right: 2em;
+}
+
+.endDate{
+    font-size: larger;
+    font-weight: 500;
+}
+
+.container-fluid{
+    border-radius: 1em;
+}

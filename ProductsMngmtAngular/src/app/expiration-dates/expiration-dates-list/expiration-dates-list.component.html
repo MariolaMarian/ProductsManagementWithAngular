@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row listHeader justify-content-center">
+    <button mat-raised-button color="accent" (click)="showAddExpDateDialog()"><i class="fa fa-plus"></i></button>
+    <button mat-raised-button color="primary" (click)="showFilterDialog()">Manage filters</button>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4 align-self-center" *ngFor="let expirationDate of expirationDates">
+      <app-expiration-date-small [showProductData]="true" [expirationDate]="expirationDate">
+      </app-expiration-date-small>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+      <pagination [boundaryLinks]="true" [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="loadExpirationDates($event)"></pagination>
+    </div>
+  </div>
+
+</div>

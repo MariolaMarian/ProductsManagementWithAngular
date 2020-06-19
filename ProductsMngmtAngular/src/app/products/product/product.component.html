@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <mat-card class="col-md-8 col-lg-6 col-xl-4 p-4 editIconBackground">
+
+      <div class="textCenter">
+        <div class="productImg">
+          <img src={{product.displayImage()}}>
+          <button class="editIconButton" mat-mini-fab color="primary" (click)="showEditProductDialog()">
+            <i class="material-icons">mode_edit</i>
+          </button>
+        </div>
+
+        <h1>{{product.name}}</h1>
+
+        <!--
+          <div>
+            <ngx-barcode [bc-value]="5901478006981" [bc-display-value]="true"></ngx-barcode>
+          </div>
+          -->
+
+        <h2>{{product.barecode}}</h2>
+
+        <h3>{{product.category.name}}</h3>
+
+        <h3>Max number of days to send reminder: {{product.maxDays}}</h3>
+      </div>
+
+
+      <div class="expirationDatesContainer">
+        <h3>Expiration dates</h3>
+        <button class="expirationDatesAddButton" mat-mini-fab color="accent" (click)="showAddExpDateDialog()">
+          <i class="material-icons">add</i>
+        </button>
+        <app-expiration-date-in-product *ngFor="let expirationDate of product.expirationDates" [expirationDate]="expirationDate" [maxDays]="product.maxDays"></app-expiration-date-in-product>
+        <div class="row d-flex justify-content-center">
+          <div class="d-flex justify-content-center">
+              <pagination class="mx-auto" [boundaryLinks]="true" [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="loadExpirationDates($event)">
+              </pagination>
+          </div>
+      </div>
+      </div>
+
+    </mat-card>
+  </div>
+</div>

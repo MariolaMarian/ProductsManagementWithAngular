@@ -1,0 +1,12 @@
+h2{
+    text-align: center;
+}
+
+.container{
+    padding: 1rem;
+}
+
+
+mat-dialog-content{
+    padding: 1rem;
+}

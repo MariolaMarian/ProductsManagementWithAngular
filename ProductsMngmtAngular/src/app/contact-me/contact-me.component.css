@@ -1,0 +1,19 @@
+
+mat-card{
+    padding: 2rem 0rem;
+}
+
+mat-card-content{
+    padding: 1rem 3rem;
+}
+
+mat-card-header{
+    overflow: hidden;
+}
+
+:host /deep/ .mat-card-header-text {
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 0.5rem;
+}

@@ -1,0 +1,13 @@
+<mat-card class="smallProductCard text-center" [routerLink]="['/products/', product.id]">
+    <img mat-mat-card-image src={{product.displayImage()}} alt="Photo of {{product.name}}">
+    <div class="productTitle fullWidth">
+        <div>{{product.name}}</div>
+    </div>
+    <hr>
+    <mat-card-content>
+        <p>{{product.barecode}}</p>
+        <h5 d-block [ngClass]="productSmallClass">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{nearestDate?.endDate | date:'longDate'}}</h5>
+    </mat-card-content>
+</mat-card>

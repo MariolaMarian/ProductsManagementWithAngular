@@ -1,0 +1,23 @@
+<!--Actual content START-->
+<div class="container-fluid">
+
+    <div class="row listHeader justify-content-center">
+        <button *ngIf="authService.matchesRoles(['Admin','Manager'])" mat-raised-button color="accent" (click)="showAddProductDialog()"><i class="fa fa-plus"></i></button>
+        <button mat-raised-button color="primary" (click)="showFilterDialog()">Manage filters</button>
+      </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4" *ngFor="let product of products">
+            <app-product-small [product]="product"></app-product-small>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="d-flex justify-content-center">
+            <pagination class="mx-auto" [boundaryLinks]="true" [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="loadProducts($event)">
+            </pagination>
+        </div>
+    </div>
+
+</div>
+<!--Actual content END-->

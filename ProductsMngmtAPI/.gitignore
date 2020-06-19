@@ -1,0 +1,10 @@
+.vscode/
+bin/
+obj/
+.vs/
+*.db 
+appsettings.json
+appsettings.Development.json
+wwwroot
+
+PublishProfiles

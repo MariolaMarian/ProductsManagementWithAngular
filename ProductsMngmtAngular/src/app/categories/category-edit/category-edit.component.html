@@ -1,0 +1,18 @@
+
+<h1 *ngIf="category.id!=null">Edit category</h1>
+<h1 *ngIf="category.id==null">Add category</h1>
+
+<form #categoryForm="ngForm" (ngSubmit)="saveCategory()">
+  <input type="hidden" name="id" [(ngModel)]="category.id">
+
+  <mat-form-field class="fullWidth">
+    <mat-label>Category name</mat-label>
+    <input matInput required name="name" [(ngModel)]="category.name">
+  </mat-form-field>
+
+  <div class="container-fluid text-center">
+    <button mat-raised-button color="link" type="button" mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="accent" type="submit" [disabled]="categoryForm.invalid">Save</button>
+  </div>
+ 
+</form>

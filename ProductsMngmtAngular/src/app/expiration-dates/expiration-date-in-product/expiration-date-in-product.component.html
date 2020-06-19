@@ -1,0 +1,22 @@
+<div class="container-fluid" [ngClass]="expDateClass">
+    <div class="row align-items-center p-3 mb-2">
+        <div class="col-xs-12 col-sm-4 text-center endDate">
+            {{expirationDate.endDate | date: 'longDate'}}
+        </div>
+        <div *ngIf="!expirationDate.collected" class="col-xs-12 col-sm-8">
+            <form #expDateForm="ngForm">
+                <mat-form-field class="countInput">
+                    <mat-label>Count</mat-label>
+                    <input matInput type="number" min="0" required [(ngModel)]="expirationDate.count" name="count">
+                </mat-form-field>
+
+                <button mat-raised-button color="accent" (click)="collect()" [disabled]="!expDateForm.valid">Collect</button>
+            </form>
+        </div>
+        <div *ngIf="expirationDate.collected" class="col-xs-12 col-sm-8 p-2">
+            {{expirationDate.count}} items collected on {{expirationDate.collectedDate | date}} 
+            <span *ngIf="expirationDate.collectedBy">
+                by {{expirationDate.collectedBy.firstName}} {{expirationDate.collectedBy.lastName}}</span>
+        </div>
+    </div>
+</div>

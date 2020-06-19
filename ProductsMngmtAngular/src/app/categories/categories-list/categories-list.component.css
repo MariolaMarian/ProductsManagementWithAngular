@@ -1,0 +1,12 @@
+
+.highlighted {
+    background-color: #5566ff;
+}
+
+.fa-trash{
+    color: crimson;
+}
+
+.categoryContainer{
+    padding: 1rem;
+}

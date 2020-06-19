@@ -1,0 +1,52 @@
+<!--Logged-->
+<div ngbDropdown class="d-inline-block" *ngIf="loggedIn()">
+  <a ngbDropdownToggle class="dropdown-toggle p-2" id="userProfileDropdown" role="button">
+    Welcome {{authService.userName}}
+  </a>
+  <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="userProfileDropdown">
+    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Update account</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+  </div>
+</div>
+
+<!--Not Logged-->
+<ng-template #modalContent let-modal>
+
+  <div class="modal-header">
+    <h1 class="modal-title" id="loginModalTitle">Login</h1>
+    <button type="button" class="btn-danger close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form #loginForm="ngForm" name="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-user"></i></span>
+          </div>
+          <input id="username" type="text" placeholder="Username" required [(ngModel)]="employeeLoginModel.userName" name="username" #username="ngModel" autocomplete="username" ngbAutofocus>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-key"></i></span>
+          </div>
+          <input id="password" type="password" placeholder="Password" required [(ngModel)]="employeeLoginModel.password" name="password" #password="ngModel" autocomplete="current-password">
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col text-center">
+              <button class="btn btn-success text-center" type="submit" [disabled]="loginForm.invalid">Login</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<button *ngIf="!loggedIn()" class="btn btn-outline-success" (click)="open(modalContent)">Log in</button>

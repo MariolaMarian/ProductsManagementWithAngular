@@ -1,0 +1,16 @@
+<div class="container">
+
+    <div class="row listHeader">
+        <div class="col">
+            <button mat-raised-button color="accent" (click)="showRegisterEmployeeDialog()"><i class="fa fa-plus"></i></button></div>
+    </div>
+
+    <hr>
+
+    <div class="row employeeContainer" *ngFor="let employee of employees">
+        <div class="col">
+            <app-employee-for-list [employee]="employee"></app-employee-for-list>
+        </div>
+    </div>
+
+</div>

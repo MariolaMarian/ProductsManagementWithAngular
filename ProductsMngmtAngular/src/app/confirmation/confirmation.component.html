@@ -1,0 +1,11 @@
+<div class="container">
+    <h2 mat-dialog-title>Are you sure you want to delete {{itemToDeleteName}} ?</h2>
+    <mat-dialog-content>All products in this category will be deleted, employees will lose their assignment. Action is not reversible</mat-dialog-content>
+    <mat-dialog-actions class="justify-content-center">
+        <button mat-raised-button color="link" mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">I am sure. Delete</button>
+    </mat-dialog-actions>
+</div>
+
+
+

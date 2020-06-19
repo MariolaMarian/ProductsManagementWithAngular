@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2 mat-dialog-title>Add expiration date</h2>
+            <mat-dialog-content>
+                <form [formGroup]="expDateForm">
+
+                    <mat-form-field class="fullWidth" *ngIf="!product">
+                        <mat-label>Product</mat-label>
+                        <mat-select formControlName="productId">
+                            <mat-option *ngFor="let product of products" [value]="product.id">
+                                {{product.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="fullWidth">
+                        <mat-label>End date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="endDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="expDateForm.get('endDate').hasError('tooLate')">
+                            Date cannot be before today
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="row">
+                        <div class="col text-center justify-content-center">
+                            <button type="button" mat-dialog-close mat-raised-button color="warn">Cancel</button>
+                            <button (click)="save()" mat-raised-button color="accent" [disabled]="!expDateForm.valid">Save</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-dialog-content>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.input-group {
+    padding: 1rem;
+}
+
+.input-group input{
+    padding-left: 1rem;
+    width: 80.5%;
+}
+
+.input-group-text{
+    min-width: 2rem;
+}

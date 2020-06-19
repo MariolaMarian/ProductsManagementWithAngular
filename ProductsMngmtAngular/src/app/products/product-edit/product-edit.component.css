@@ -1,0 +1,29 @@
+
+  
+  .fileInput {
+    margin: 0.5rem 0rem 1rem 0rem;
+  }
+
+  .productImg{
+    overflow: hidden;
+  }
+
+  .productImg img{
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    margin-top: 1rem;
+  }
+
+  button{
+    margin: 0.5rem;
+  }
+
+  .imgPart{
+    border: 1px dashed whitesmoke;
+    margin: 0.5rem;
+  }
+
+  .container{
+    max-width: 450px;
+  }

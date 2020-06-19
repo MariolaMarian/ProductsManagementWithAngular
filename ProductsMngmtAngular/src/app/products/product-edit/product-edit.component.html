@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <div class="col">
+        <form #productForm="ngForm" (ngSubmit)="saveProduct()">
+
+          <input type="hidden" name="id" [(ngModel)]="product.id">
+
+          <mat-form-field class="fullWidth">
+            <mat-label>Product name</mat-label>
+            <input matInput required name="name" [(ngModel)]="product.name">
+          </mat-form-field>
+
+          <mat-form-field class="fullWidth">
+            <mat-label>Category</mat-label>
+            <select matNativeControl required name="categoryId" [(ngModel)]="product.categoryId">
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{category.name}}
+              </option>
+            </select>
+          </mat-form-field>
+
+          <mat-form-field class="fullWidth">
+            <mat-label>Max number of days to send reminder</mat-label>
+            <input matInput required type="number" name="maxDays" [(ngModel)]="product.maxDays">
+          </mat-form-field>
+
+          <!--
+            <div>
+              <ngx-barcode [bc-value]="5901478006981" [bc-display-value]="true"></ngx-barcode>
+            </div>
+            -->
+
+          <!--
+            <div>
+              <zxing-scanner [formats]="['EAN_13']"></zxing-scanner>
+            </div>
+            -->
+
+          <mat-form-field class="fullWidth">
+            <mat-label>Barecode</mat-label>
+            <input [disabled]="this.product.id" matInput required name="barecode" [(ngModel)]="product.barecode">
+          </mat-form-field>
+
+          <div class="imgPart">
+            <div class="productImg">
+              <img src={{imagePreview}}>
+            </div>
+  
+            <div class="fileInput">
+              <input type="file" accept=".jpg,.png" (change)="fileUploaded($event)">
+            </div>
+          </div>
+
+
+          <div class="container text-center">
+            <button type="button" mat-dialog-close mat-raised-button color="link">Cancel</button>
+            <button type="submit" mat-raised-button color="accent" [disabled]="productForm.invalid">Save</button>
+          </div>
+
+        </form>
+    </div>
+
+  </div>
+
+</div>

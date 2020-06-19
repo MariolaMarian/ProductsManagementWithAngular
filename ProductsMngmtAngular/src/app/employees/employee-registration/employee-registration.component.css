@@ -1,0 +1,14 @@
+.transparentBackground{
+    background: transparent;
+    outline: transparent;
+    border: transparent;
+    color: #eee;
+}
+
+.fullWidth{
+    width: 100%;
+}
+
+button{
+    margin: 0.5rem;
+}
