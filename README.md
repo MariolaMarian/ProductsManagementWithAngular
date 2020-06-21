@@ -17,3 +17,5 @@ TO DO:
 
 http://productsmanagementforshops.hostingasp.pl/ 
 Exemplary account: Admin; Pa$$w0rd
+
+Swagger: http://productsmanagementforshops.hostingasp.pl/swagger/index.html
