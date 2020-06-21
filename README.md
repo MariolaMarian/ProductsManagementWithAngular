@@ -16,4 +16,4 @@ TO DO:
 12) PL Translations (Front)
 
 http://productsmanagementforshops.hostingasp.pl/ 
-Exemplary account: mariankox; Pa$$w0rd
+Exemplary account: Admin; Pa$$w0rd
