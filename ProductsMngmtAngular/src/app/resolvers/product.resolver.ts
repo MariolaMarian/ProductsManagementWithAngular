@@ -4,7 +4,7 @@ import { AlertifyService } from '../services/alertify.service';
 import { of, forkJoin } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ProductService } from '../services/product.service';
-import { Product } from '../models/product.model';
+import { Product } from '../products/models/product.model';
 import { ExpirationDateService } from '../services/expiration-date.service';
 import { FilterParam } from '../helpers/filter-param';
 

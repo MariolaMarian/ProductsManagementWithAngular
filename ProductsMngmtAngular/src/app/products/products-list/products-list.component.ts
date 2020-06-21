@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/products/models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -10,6 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
 import { ManageFiltersComponent } from 'src/app/filters/manage-filters.component';
 import { AuthorizationService } from 'src/app/services/authorization.service';
+import { FilterParam } from 'src/app/helpers/filter-param';
+import { IProductsFiltersForm } from 'src/app/helpers/products-filters-form.interface';
+import { ProductsFiltersParams } from 'src/app/helpers/products-filters-params';
 
 @Component({
   selector: 'app-products-list',
@@ -21,6 +24,7 @@ export class ProductsListComponent extends PaginatedComponentBase<Product>
   @ViewChild('addProductModal', { static: false }) modal: ModalDirective;
   products: Product[];
   selectedCategories: number[];
+  filtersFromDialog: IProductsFiltersForm;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,13 +44,13 @@ export class ProductsListComponent extends PaginatedComponentBase<Product>
     });
   }
 
-  loadProducts(event: any) {
-    if (event.page) {
+  loadProducts(event: any, parameters = []) {
+    if (event && event.page) {
       this.currentPage = event.page;
     }
 
     this.productService
-      .getAllPaginated(this.currentPage, this.itemsPerPage)
+      .getAllPaginated(this.currentPage, this.itemsPerPage, parameters)
       .subscribe(
         (data) => {
           this.products = this.initializePagination(data);
@@ -60,13 +64,25 @@ export class ProductsListComponent extends PaginatedComponentBase<Product>
   }
 
   showFilterDialog() {
-    const filtersDialogRef = this.dialog.open(ManageFiltersComponent, {});
+    const filtersDialogRef = this.dialog.open(ManageFiltersComponent, {
+      data: this.filtersFromDialog,
+    });
 
-    filtersDialogRef.afterClosed().subscribe((result) => {
+    filtersDialogRef.afterClosed().subscribe((result: IProductsFiltersForm) => {
       if (result) {
         console.log(result);
+        this.filtersFromDialog = result;
+        const filters = new ProductsFiltersParams(
+          result
+        ).ReturnAsFilterParams();
+        this.loadProducts(null, filters);
       }
     });
+  }
+
+  clearFilters() {
+    this.loadProducts(null);
+    this.filtersFromDialog = null;
   }
 
   showAddProductDialog() {

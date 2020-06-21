@@ -42,7 +42,7 @@ namespace ProductsMngmtAPI.Configuration
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image));
             CreateMap<Product, ProductVM>()
                 .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Image))
-                .ForMember(dest => dest.NearestDate, opt => opt.MapFrom(src => src.ExpirationDates.Where(exp => !exp.Collected).Any() ?  src.ExpirationDates.Where(exp => !exp.Collected).Max(exp => exp.EndDate) : new DateTime().AddYears(5)));
+                .ForMember(dest => dest.NearestDate, opt => opt.MapFrom(src => src.ExpirationDates.Where(exp => !exp.Collected).Any() ?  src.ExpirationDates.Where(exp => !exp.Collected).Min(exp => exp.EndDate) : DateTime.Now.AddYears(5)));
             CreateMap<ProductCreateDTO,Product>()
                 .ForMember(dest => dest.Image, opt => opt.ConvertUsing(new ImageSourceToByteArrayConverter(), (src => src.Image)));
             CreateMap<ProductEditDTO,Product>()

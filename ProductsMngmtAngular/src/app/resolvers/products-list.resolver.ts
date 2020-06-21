@@ -3,7 +3,7 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AlertifyService } from '../services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Product } from '../models/product.model';
+import { Product } from '../products/models/product.model';
 import { ProductService } from '../services/product.service';
 import { FilterParam } from '../helpers/filter-param';
 

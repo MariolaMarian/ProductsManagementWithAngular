@@ -8,6 +8,6 @@
         <p>{{product.barecode}}</p>
         <h5 d-block [ngClass]="productSmallClass">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
-            {{nearestDate?.endDate | date:'longDate'}}</h5>
+            {{product.nearestDate | date:'longDate'}}</h5>
     </mat-card-content>
 </mat-card>

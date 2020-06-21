@@ -1,4 +1,4 @@
-import { Product } from './product.model';
+import { Product } from '../products/models/product.model';
 import { IItemWithId } from '../interfaces/item-with-id.interface';
 
 export class Category implements IItemWithId{

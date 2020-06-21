@@ -12,6 +12,6 @@ namespace ProductsMngmt.ViewModels.VMs.Product
         public int CategoryId { get; set; }
         public CategorySimpleVM Category { get; set; }
         public string Image { get; set; }
-        public DateTime NearestDate{get;set;}
+        public DateTime NearestDate { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-import { ExpirationDate } from './expiration-date.model';
-import { Category } from './category.model';
-import { IItemWithId } from '../interfaces/item-with-id.interface';
+import { ExpirationDate } from '../../models/expiration-date.model';
+import { Category } from '../../models/category.model';
+import { IItemWithId } from '../../interfaces/item-with-id.interface';
 
 export class Product implements IItemWithId {
     id: number;
@@ -10,6 +10,7 @@ export class Product implements IItemWithId {
     category: Category;
     image: string | ArrayBuffer;
     maxDays: number;
+    nearestDate: Date; 
     expirationDates: ExpirationDate[];
 
     displayImage(): string
@@ -41,6 +42,7 @@ export class Product implements IItemWithId {
             this.image = product.image;
             this.maxDays = product.maxDays;
             this.expirationDates = product.expirationDates;
+            this.nearestDate = product.nearestDate;
         }
     }
 

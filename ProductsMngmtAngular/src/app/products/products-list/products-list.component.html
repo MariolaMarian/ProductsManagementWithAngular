@@ -4,6 +4,7 @@
     <div class="row listHeader justify-content-center">
         <button *ngIf="authService.matchesRoles(['Admin','Manager','TeamLeader'])" mat-raised-button color="accent" (click)="showAddProductDialog()"><i class="fa fa-plus"></i></button>
         <button mat-raised-button color="primary" (click)="showFilterDialog()">Manage filters</button>
+        <button mat-raised-button color="warning" (click)="clearFilters()">Clear filters</button>
       </div>
 
     <div class="row">

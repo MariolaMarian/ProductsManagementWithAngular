@@ -27,7 +27,9 @@ export abstract class BaseService<
 
     if (otherParams != null) {
       otherParams.forEach((param) => {
-        params = params.append(param.key, param.value);
+        if (param !== undefined) {
+          params = params.append(param.key, param.value);
+        }
       });
     }
 
@@ -53,8 +55,10 @@ export abstract class BaseService<
         params = params.append(param.key, param.value);
       });
     }
-    return this.httpClient
-      .get<T[]>(this.actionUrl, { observe: 'body', params });
+    return this.httpClient.get<T[]>(this.actionUrl, {
+      observe: 'body',
+      params,
+    });
   }
 
   get(id: number): Observable<T> {

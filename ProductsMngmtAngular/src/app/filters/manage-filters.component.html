@@ -17,7 +17,7 @@
             <h3>By categories</h3>
             <mat-form-field class="fullWidth">
                 <mat-label>Select categories</mat-label>
-                <mat-select multiple formControlName="selectedCategories">
+                <mat-select multiple formControlName="selectedCategories" [compareWith]="compareByValue" > 
                     <mat-option *ngFor="let category of categories" [value]="category">
                         {{category.name}}
                     </mat-option>
@@ -49,7 +49,7 @@
                         <mat-form-field class="sidesMargin">
                             <mat-label>Way</mat-label>
                             <mat-select formControlName="order">
-                                <mat-option *ngFor="let orderBy of orders" [value]="orderBy">{{orderBy}}</mat-option>
+                                <mat-option *ngFor="let orderBy of orders" [value]="orderBy">{{orderBy.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>

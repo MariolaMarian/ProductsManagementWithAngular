@@ -1,4 +1,4 @@
-import { Product } from './product.model';
+import { Product } from '../products/models/product.model';
 import { Employee } from './employee.model';
 import { IItemWithId } from '../interfaces/item-with-id.interface';
 

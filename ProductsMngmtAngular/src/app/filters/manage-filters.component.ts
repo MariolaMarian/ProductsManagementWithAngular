@@ -1,10 +1,16 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { PropertyToOrderBy } from 'src/app/models/property-to-order-by';
+import { FormGroup, FormBuilder, FormArray, Form } from '@angular/forms';
+import {
+  PropertyToOrderBy,
+  OrderProperty,
+} from 'src/app/helpers/property-to-order-by';
 import { CategorySimple } from 'src/app/models/category/category-simple';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryService } from '../services/category.service';
 import { AlertifyService } from '../services/alertify.service';
+import { OrderType, Order } from '../helpers/order-type';
+import { IProductsFiltersForm } from '../helpers/products-filters-form.interface';
+import { IItemWithId } from '../interfaces/item-with-id.interface';
 
 @Component({
   selector: 'app-manage-filters',
@@ -12,18 +18,26 @@ import { AlertifyService } from '../services/alertify.service';
   styleUrls: ['./manage-filters.component.css'],
 })
 export class ManageFiltersComponent implements OnInit {
-  properties: PropertyToOrderBy[];
-  orders: string[];
-  categories: CategorySimple[];
-  mainForm: FormGroup;
-  ordersError: string;
-
   constructor(
+    @Inject(MAT_DIALOG_DATA) private data: IProductsFiltersForm,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ManageFiltersComponent>,
     private categoryService: CategoryService,
     private alertify: AlertifyService
   ) {}
+
+  get orderByForms() {
+    return this.mainForm.get('ordersBy') as FormArray;
+  }
+  properties: PropertyToOrderBy[];
+  orders: OrderType[];
+  categories: CategorySimple[];
+  mainForm: FormGroup;
+  ordersError: string;
+
+  compareByValue(f1: any, f2: any) {
+    return f1 && f2 && f1.id === f2.id;
+  }
 
   ngOnInit(): void {
     this.initializeProperties();
@@ -44,10 +58,15 @@ export class ManageFiltersComponent implements OnInit {
       categoriesInfo: categoriesForm,
       ordersBy: this.fb.array([]),
     });
-  }
 
-  get orderByForms() {
-    return this.mainForm.get('ordersBy') as FormArray;
+    if (this.data) {
+      this.mainForm.setValue(this.data);
+      this.data.categoriesInfo.selectedCategories?.forEach((item) => {
+        this.mainForm.controls.categoriesInfo.patchValue({
+          selectedCategories: item,
+        });
+      });
+    }
   }
 
   addOrderBy() {
@@ -67,15 +86,21 @@ export class ManageFiltersComponent implements OnInit {
 
   initializeProperties() {
     this.properties = [];
-    this.properties.push(new PropertyToOrderBy(1, 'Product name'));
-    this.properties.push(new PropertyToOrderBy(2, 'Category name'));
-    this.properties.push(new PropertyToOrderBy(3, 'End date'));
+    this.properties.push(
+      new PropertyToOrderBy(OrderProperty.ProductName, 'Product name')
+    );
+    this.properties.push(
+      new PropertyToOrderBy(OrderProperty.CategoryName, 'Category name')
+    );
+    this.properties.push(
+      new PropertyToOrderBy(OrderProperty.ExpirationDate, 'End date')
+    );
   }
 
   initializeOrders() {
     this.orders = [];
-    this.orders.push('asc');
-    this.orders.push('desc');
+    this.orders.push(new OrderType(Order.ASC, 'asc'));
+    this.orders.push(new OrderType(Order.DESC, 'desc'));
   }
 
   initializeCategories() {
@@ -97,7 +122,6 @@ export class ManageFiltersComponent implements OnInit {
     const array = this.orderByForms.value;
 
     for (const element of array) {
-
       const lastOcc = array
         .map((el) => el.property.id)
         .lastIndexOf(element.property.id);
