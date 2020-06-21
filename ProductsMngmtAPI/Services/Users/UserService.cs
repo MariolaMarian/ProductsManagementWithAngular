@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.BLL.Models;
 
 namespace ProductsMngmtAPI.Services.Users
 {

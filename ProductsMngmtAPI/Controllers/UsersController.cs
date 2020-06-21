@@ -5,9 +5,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProductsMngmtAPI.Helpers.Pagination;
 using ProductsMngmtAPI.Services.Users;
-using ProductsMngmtAPI.VMs.User;
+using ProductsMngmt.ViewModels.VMs.User;
+using ProductsMngmt.DAL.Helpers.Pagination;
 
 namespace ProductsMngmtAPI.Controllers
 {

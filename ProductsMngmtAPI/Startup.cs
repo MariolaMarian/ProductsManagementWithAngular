@@ -13,11 +13,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using ProductsMngmtAPI.Data;
-using ProductsMngmtAPI.Data.IRepos;
-using ProductsMngmtAPI.Data.Repos;
-using ProductsMngmtAPI.Helpers;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.DAL.Data;
+using ProductsMngmt.DAL.Repositories;
+using ProductsMngmt.BLL.Models;
 using Microsoft.OpenApi.Models;
 using ProductsMngmtAPI.Configuration;
 using System.Collections.Generic;
@@ -26,6 +24,12 @@ using System;
 using System.IO;
 using ProductsMngmtAPI.Services.Users;
 using ProductsMngmtAPI.Helpers.Extensions;
+using ProductsMngmt.ViewModels.VMs.Product;
+using ProductsMngmt.ViewModels.VMs.User;
+using ProductsMngmtAPI.Controllers;
+using ProductsMngmt.DAL.UnitsOfWork;
+using System.Net.Mail;
+using ProductsMngmtAPI.Services.Emails;
 
 namespace ProductsMngmtAPI
 {
@@ -86,11 +90,27 @@ namespace ProductsMngmtAPI
                 options.AddPolicy("RequireEmployeeRole", policy => policy.RequireRole("Admin", "Manager", "TeamLeader", "Employee"));
             });
 
+            services.AddScoped((serviceProvider) =>
+            {
+                var config = serviceProvider.GetRequiredService<IConfiguration>();
+                return new SmtpClient()
+                {
+                    Host = config.GetValue<string>("Email:Smtp:Host"),
+                    Port = config.GetValue<int>("Email:Smtp:Port"),
+                    Credentials = new NetworkCredential(
+                        config.GetValue<string>("Email:Smtp:Username"),
+                        config.GetValue<string>("Email:Smtp:Password")
+                        )
+                };
+            });
+
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IRepository<ExpirationDate>, Repository<ExpirationDate>>();
             services.AddScoped<IRepository<UserCategory>, Repository<UserCategory>>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IProductCategoryUnitOfWork, ProductCategoryUnitOfWork>();
 
             services.AddControllers(opt =>
             {
@@ -106,7 +126,10 @@ namespace ProductsMngmtAPI
 
             services.AddCors();
 
-            services.AddAutoMapper(typeof(Product).Assembly);
+            var bllAssembly = typeof(UserCategory).Assembly;
+            var vmAssembly = typeof(UserWithIncludingsVM).Assembly;
+            var apiAssembly = typeof(ProductsController).Assembly;
+            services.AddAutoMapper(bllAssembly, vmAssembly, apiAssembly);
 
             services.AddSwaggerGen(options =>
             {

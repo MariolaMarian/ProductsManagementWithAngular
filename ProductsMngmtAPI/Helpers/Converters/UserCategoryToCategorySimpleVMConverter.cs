@@ -1,6 +1,6 @@
 using AutoMapper;
-using ProductsMngmtAPI.Models;
-using ProductsMngmtAPI.VMs.Category;
+using ProductsMngmt.BLL.Models;
+using ProductsMngmt.ViewModels.VMs.Category;
 
 namespace ProductsMngmtAPI.Helpers.Converters
 {

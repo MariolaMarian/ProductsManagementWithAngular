@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using ProductsMngmtAPI.Data;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.DAL.Data;
+using ProductsMngmt.BLL.Models;
 using Microsoft.EntityFrameworkCore;
-using ProductsMngmtAPI.Data.Seeds;
+using ProductsMngmtAPI.Seeds;
 
 namespace ProductsMngmtAPI
 {

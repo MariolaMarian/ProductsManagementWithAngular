@@ -12,11 +12,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using ProductsMngmtAPI.Data.IRepos;
-using ProductsMngmtAPI.DTOs.User;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.DAL.Repositories;
+using ProductsMngmt.ViewModels.DTOs.User;
+using ProductsMngmt.BLL.Models;
 using ProductsMngmtAPI.Services.Users;
-using ProductsMngmtAPI.VMs.User;
+using ProductsMngmt.ViewModels.VMs.User;
 
 namespace ProductsMngmtAPI.Controllers
 {
@@ -206,6 +206,21 @@ namespace ProductsMngmtAPI.Controllers
                 return BadRequest();
             }
         }
+
+        /*
+        [Authorize]
+        [HttpPost("changePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
+        {
+            var result = await _signInManager.CheckPasswordSignInAsync(User, changePasswordDTO.OldPassword, false);
+            if (result.Succeeded)
+            {
+                //send notification email
+                return Ok();
+            }
+        }
+        */
+
 
         private async Task<string> GenerateJwtToken(User user)
         {

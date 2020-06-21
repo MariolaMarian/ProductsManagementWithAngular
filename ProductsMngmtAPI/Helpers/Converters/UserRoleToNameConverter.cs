@@ -1,5 +1,5 @@
 using AutoMapper;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.BLL.Models;
 
 namespace ProductsMngmtAPI.Helpers.Converters
 {

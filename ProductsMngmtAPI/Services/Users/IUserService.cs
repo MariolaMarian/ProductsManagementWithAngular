@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.BLL.Models;
 
 namespace ProductsMngmtAPI.Services.Users
 {

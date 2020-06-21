@@ -1,21 +1,21 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ProductsMngmtAPI.Data.IRepos;
-using ProductsMngmtAPI.Models;
+using ProductsMngmt.DAL.Repositories;
+using ProductsMngmt.BLL.Models;
 using AutoMapper;
-using ProductsMngmtAPI.Helpers.Pagination;
-using ProductsMngmtAPI.Helpers;
 using System.Collections.Generic;
-using ProductsMngmtAPI.DTOs.ExpirationDate;
+using ProductsMngmt.ViewModels.DTOs.ExpirationDate;
 using System.Security.Claims;
 using System.Linq.Expressions;
 using System;
 using ProductsMngmtAPI.Helpers.QueryParams;
-using ProductsMngmtAPI.VMs.ExpirationDate;
+using ProductsMngmt.ViewModels.VMs.ExpirationDate;
 using LinqKit;
 using System.Linq;
 using ProductsMngmtAPI.Helpers.Extensions;
+using ProductsMngmt.DAL.Helpers.Pagination;
+using Microsoft.AspNetCore.Identity;
 
 namespace ProductsMngmtAPI.Controllers
 {
@@ -25,10 +25,12 @@ namespace ProductsMngmtAPI.Controllers
     public class ExpirationDatesController : Controller
     {
         private readonly IRepository<ExpirationDate> _repo;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
-        public ExpirationDatesController(IRepository<ExpirationDate> repo, IMapper mapper)
+        public ExpirationDatesController(IRepository<ExpirationDate> repo, UserManager<User> userManager, IMapper mapper)
         {
             _repo = repo;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
@@ -38,21 +40,18 @@ namespace ProductsMngmtAPI.Controllers
         {
             Expression<Func<ExpirationDate, object>>[] includings = new Expression<Func<ExpirationDate, object>>[2];
 
-            includings[0] = x => x.Product;
-
             if (filterParams.WithEmployees)
             {
-                includings[1] = x => x.CollectedBy;
+                includings[0] = x => x.CollectedBy;
             }
-
-            Expression<Func<ExpirationDate, bool>> filtersBase = PredicateBuilder.New<ExpirationDate>(true);
-
-            if (filterParams.ProductId > 0)
+            if (filterParams.WithProducts)
             {
-                filtersBase = filtersBase.And(x => x.ProductId == filterParams.ProductId);
+                includings[1] = x => x.Product;
             }
 
-            PagedList<ExpirationDate> paginatedExpirationDates = await _repo.GetPaginated(filtersBase, dbSet => dbSet.OrderBy(exp => exp.Collected ? 1: 0).ThenBy(exp => exp.EndDate), filterParams, includings);
+            string userIdToFilter = (User.IsInRole("Admin") || User.IsInRole("Manager")) ? null : (await _userManager.GetUserAsync(User)).Id;
+
+            PagedList<ExpirationDate> paginatedExpirationDates = await _repo.GetPaginated(filterParams.ExpirationDatesFiltersAsOneExpression(userIdToFilter), dbSet => dbSet.OrderBy(exp => exp.Collected ? 1 : 0).ThenBy(exp => exp.EndDate), filterParams, includings);
 
             Response.AddPagination(paginatedExpirationDates.CurrentPage, paginatedExpirationDates.PageSize, paginatedExpirationDates.TotalCount, paginatedExpirationDates.TotalPages);
 
