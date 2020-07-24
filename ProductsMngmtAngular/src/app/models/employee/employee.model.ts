@@ -1,5 +1,5 @@
-import { IItemWithId } from '../interfaces/item-with-id.interface';
-import { ICategorySimple } from '../interfaces/category-simple.interface';
+import { IItemWithId } from 'src/app/interfaces/item-with-id.interface';
+import { ICategorySimple } from 'src/app/interfaces/category-simple.interface';
 
 export class Employee implements IItemWithId {
     id: string;

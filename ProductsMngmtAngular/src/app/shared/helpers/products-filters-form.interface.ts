@@ -1,6 +1,6 @@
 import { PropertyToOrderBy } from './property-to-order-by';
-import { CategorySimple } from '../models/category/category-simple';
 import { Order } from './order-type';
+import { CategorySimple } from 'src/app/models/category/category-simple';
 
 export interface IProductsFiltersForm
 {

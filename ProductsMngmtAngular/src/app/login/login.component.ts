@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertifyService } from '../services/alertify.service';
 import { Router } from '@angular/router';
-import { EmployeeLogin } from '../models/employee-login.model';
+import { EmployeeLogin } from '../models/employee/employee-login.model';
 import { AuthorizationService } from '../services/authorization.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalDirective } from 'ngx-bootstrap/modal';

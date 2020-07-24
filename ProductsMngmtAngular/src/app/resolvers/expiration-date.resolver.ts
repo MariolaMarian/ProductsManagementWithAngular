@@ -4,7 +4,7 @@ import { AlertifyService } from '../services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ExpirationDateService } from '../services/expiration-date.service';
-import { ExpirationDate } from '../models/expiration-date.model';
+import { ExpirationDate } from '../models/expiration-date/expiration-date.model';
 
 @Injectable()
 export class ExpirationDateResolver implements Resolve<ExpirationDate> {

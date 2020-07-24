@@ -3,9 +3,9 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AlertifyService } from '../services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Product } from '../products/models/product.model';
 import { ProductService } from '../services/product.service';
-import { FilterParam } from '../helpers/filter-param';
+import { Product } from '../models/product/product.model';
+import { FilterParam } from '../shared/helpers/filter-param';
 
 @Injectable()
 export class ProductsListResolver implements Resolve<Product[]> {

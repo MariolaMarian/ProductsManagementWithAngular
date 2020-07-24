@@ -1,16 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Product } from 'src/app/products/models/product.model';
 import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpirationDateAddComponent } from 'src/app/expiration-dates/expiration-date-add/expiration-date-add.component';
-import { PaginatedComponentBase } from 'src/app/helpers/paginated-component-base';
-import { ExpirationDate } from 'src/app/models/expiration-date.model';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { ExpirationDateService } from 'src/app/services/expiration-date.service';
-import { FilterParam } from 'src/app/helpers/filter-param';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
 import { ProductService } from 'src/app/services/product.service';
+import { ExpirationDate } from 'src/app/models/expiration-date/expiration-date.model';
+import { Product } from 'src/app/models/product/product.model';
+import { PaginatedComponentBase } from 'src/app/shared/helpers/paginated-component-base';
+import { FilterParam } from 'src/app/shared/helpers/filter-param';
 
 @Component({
   selector: 'app-product',

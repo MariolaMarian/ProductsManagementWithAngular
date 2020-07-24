@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from 'src/app/models/category.model';
+import { Category } from 'src/app/models/category/category.model';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 

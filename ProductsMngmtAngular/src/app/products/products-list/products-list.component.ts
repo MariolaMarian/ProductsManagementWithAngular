@@ -1,18 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Product } from 'src/app/products/models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { ModalDirective } from 'ngx-bootstrap/modal/public_api';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PaginatedComponentBase } from 'src/app/helpers/paginated-component-base';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
-import { ManageFiltersComponent } from 'src/app/filters/manage-filters.component';
 import { AuthorizationService } from 'src/app/services/authorization.service';
-import { FilterParam } from 'src/app/helpers/filter-param';
-import { IProductsFiltersForm } from 'src/app/helpers/products-filters-form.interface';
-import { ProductsFiltersParams } from 'src/app/helpers/products-filters-params';
+import { Product } from 'src/app/models/product/product.model';
+import { IProductsFiltersForm } from 'src/app/shared/helpers/products-filters-form.interface';
+import { PaginatedComponentBase } from 'src/app/shared/helpers/paginated-component-base';
+import { ManageFiltersComponent } from 'src/app/shared/manage-filters/manage-filters.component';
+import { ProductsFiltersParams } from 'src/app/shared/helpers/products-filters-params';
 
 @Component({
   selector: 'app-products-list',

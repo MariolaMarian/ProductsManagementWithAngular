@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Employee } from 'src/app/models/employee.model';
-import { ExpirationDate } from 'src/app/models/expiration-date.model';
-import { Product } from 'src/app/products/models/product.model';
 import { ActivatedRoute } from '@angular/router';
-import { ClassHelperService } from 'src/app/helpers/class-helper.service';
+import { ExpirationDate } from 'src/app/models/expiration-date/expiration-date.model';
+import { Employee } from 'src/app/models/employee/employee.model';
+import { Product } from 'src/app/models/product/product.model';
+import { ClassHelperService } from 'src/app/shared/helpers/class-helper.service';
 
 @Component({
   selector: 'app-expiration-date-small',

@@ -1,6 +1,7 @@
-import { Product } from '../products/models/product.model';
-import { Employee } from './employee.model';
-import { IItemWithId } from '../interfaces/item-with-id.interface';
+import { IItemWithId } from 'src/app/interfaces/item-with-id.interface';
+import { Employee } from '../employee/employee.model';
+import { Product } from '../product/product.model';
+
 
 export class ExpirationDate implements IItemWithId {
     id: number;

@@ -4,7 +4,7 @@ import { AlertifyService } from '../services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
-import { Employee } from '../models/employee.model';
+import { Employee } from '../models/employee/employee.model';
 
 @Injectable()
 export class EmployeeListResolver implements Resolve<Employee[]> {

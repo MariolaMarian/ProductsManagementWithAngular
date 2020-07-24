@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpirationDate } from 'src/app/models/expiration-date.model';
 import { ActivatedRoute } from '@angular/router';
 import { ExpirationDateService } from 'src/app/services/expiration-date.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { PaginatedComponentBase } from 'src/app/helpers/paginated-component-base';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpirationDateAddComponent } from '../expiration-date-add/expiration-date-add.component';
-import { ManageFiltersComponent } from 'src/app/filters/manage-filters.component';
+import { ExpirationDate } from 'src/app/models/expiration-date/expiration-date.model';
+import { PaginatedComponentBase } from 'src/app/shared/helpers/paginated-component-base';
+import { ManageFiltersComponent } from 'src/app/shared/manage-filters/manage-filters.component';
 
 @Component({
   selector: 'app-expiration-dates-list',

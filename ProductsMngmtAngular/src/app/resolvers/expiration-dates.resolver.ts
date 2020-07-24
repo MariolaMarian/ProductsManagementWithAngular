@@ -3,9 +3,8 @@ import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AlertifyService } from '../services/alertify.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ExpirationDate } from '../models/expiration-date.model';
 import { ExpirationDateService } from '../services/expiration-date.service';
-import { FilterParam } from '../helpers/filter-param';
+import { ExpirationDate } from '../models/expiration-date/expiration-date.model';
 
 @Injectable()
 export class ExpirationDatesListResolver implements Resolve<ExpirationDate[]> {

@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IItemWithId } from '../interfaces/item-with-id.interface';
-import { PaginatedResult } from '../models/paginated-result';
 import { map } from 'rxjs/operators';
-import { FilterParam } from '../helpers/filter-param';
+import { IItemWithId } from 'src/app/interfaces/item-with-id.interface';
+import { PaginatedResult } from 'src/app/models/paginated-result';
+import { FilterParam } from '../shared/helpers/filter-param';
 
 export abstract class BaseService<
   T extends IItemWithId,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { Category } from '../models/category.model';
+import { Category } from '../models/category/category.model';
 import { CategoryService } from '../services/category.service';
 import { AlertifyService } from '../services/alertify.service';
 import { Observable, of } from 'rxjs';

@@ -1,16 +1,14 @@
 import {
   Component,
   OnInit,
-  ViewChild,
   Inject,
 } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
-import { Category } from 'src/app/models/category.model';
+import { Category } from 'src/app/models/category/category.model';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { Product } from 'src/app/products/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
-import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Product } from 'src/app/models/product/product.model';
 
 @Component({
   selector: 'app-product-edit',

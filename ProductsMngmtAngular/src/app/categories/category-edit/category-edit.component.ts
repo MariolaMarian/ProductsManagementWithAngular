@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { Category } from 'src/app/models/category.model';
+import { Category } from 'src/app/models/category/category.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { NgForm } from '@angular/forms';
