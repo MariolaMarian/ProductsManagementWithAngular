@@ -25,6 +25,7 @@ export class ProductsListComponent extends PaginatedComponentBase<Product>
   products: Product[];
   selectedCategories: number[];
   filtersFromDialog: IProductsFiltersForm;
+  public loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +46,8 @@ export class ProductsListComponent extends PaginatedComponentBase<Product>
   }
 
   loadProducts(event: any, parameters = []) {
+    this.loading = true;
+
     if (event && event.page) {
       this.currentPage = event.page;
     }
@@ -57,6 +60,9 @@ export class ProductsListComponent extends PaginatedComponentBase<Product>
         },
         (error) => {
           this.alertify.error(error);
+        },
+        () => {
+          this.loading = false;
         }
       );
 

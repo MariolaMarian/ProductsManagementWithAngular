@@ -35,6 +35,11 @@ namespace ProductsMngmtAPI.Controllers
         }
 
         // GET api/expirationDates
+        /// <summary>
+        /// Returns paginated expiration dates
+        /// </summary>
+        /// <remarks>Expiration dates are returned in body, pagination parameters and other filters are returned in headers</remarks>
+        /// <response code="200">Returns data</response>
         [HttpGet]
         public async Task<IActionResult> GetExpirationDates([FromQuery] ExpirationDatesFilterParams filterParams)
         {
@@ -59,6 +64,11 @@ namespace ProductsMngmtAPI.Controllers
         }
 
         // GET api/expirationDates/5
+        /// <summary>
+        /// Returns expiration date with informations about product to which it is assigned and informations about who collected products with this expiration date
+        /// </summary>
+        /// <response code="200">Expiration date found</response>
+        /// <response code="404">No expiration date was found was found</response>
         [HttpGet("{id}", Name = "GetExpirationDate")]
         public async Task<IActionResult> GetExpirationDate(int id)
         {
@@ -73,6 +83,12 @@ namespace ProductsMngmtAPI.Controllers
         }
 
         // POST api/expirationDates
+        /// <summary>
+        /// Adds new expiration date to product
+        /// </summary>
+        /// <response code="201">Returns created expiration date</response>
+        /// <response code="400">It this expiration date is already specified for selected product</response>
+        /// <response code="500">Error occured while saving expiration date in db</response>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ExpirationDateCreateDTO expirationDate)
         {
@@ -84,16 +100,30 @@ namespace ProductsMngmtAPI.Controllers
 
             var expirationDateEntity = _mapper.Map<ExpirationDate>(expirationDate);
             _repo.Add(expirationDateEntity);
-
-            if (await _repo.SaveAll())
+            try
             {
-                return CreatedAtRoute("GetExpirationDate", new { id = expirationDateEntity.Id }, _mapper.Map<ExpirationDateForCreateVM>(expirationDateEntity));
+                if (await _repo.SaveAll())
+                {
+                    return CreatedAtRoute("GetExpirationDate", new { id = expirationDateEntity.Id }, _mapper.Map<ExpirationDateForCreateVM>(expirationDateEntity));
+                }
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+
 
             return BadRequest("Error during adding new expiration date");
         }
 
         // PUT api/expirationDates/5
+        /// <summary>
+        /// To save collected products number from this expiration date.async User who sent request will be saved as collector.
+        /// </summary>
+        /// <response code="204">Expiration date updated - products collected</response>
+        /// <response code="400">Id from route and from expiration date does not match or user wants to save number of collected items less than previously for the same date</response>
+        /// <response code="404">Expiration date with specified id does not exist</response>
+        /// <response code="500">Error occured while saving expiration date to db</response>
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] ExpirationDateUpdateDTO expirationDate)
         {
@@ -123,15 +153,30 @@ namespace ProductsMngmtAPI.Controllers
 
             _repo.Update(expirationDateEntity);
 
-            if (await _repo.SaveAll())
+            try
             {
-                return NoContent();
+                if (await _repo.SaveAll())
+                {
+                    return NoContent();
+                }
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+
 
             return BadRequest("Error during adding new expiration date");
         }
 
         // DELETE api/expirationDates/5
+        /// <summary>
+        /// Delete expiration date (added by mistake) - only for admins, managers and team leaders
+        /// </summary>
+        /// <response code="200">Expiration date deteled successfully</response>
+        /// <response code="404">Expiration date with specified id does not exist</response>
+        /// <response code="500">Error occured while deleting expiration date in db</response>
+        [Authorize(Policy = "RequireMediumRole")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -144,10 +189,17 @@ namespace ProductsMngmtAPI.Controllers
 
             _repo.Delete(expirationDateToDelete);
 
+            try{
             if (await _repo.SaveAll())
             {
                 return Ok();
             }
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500);
+            }
+
 
             return BadRequest("Error while trying to delete expiration date");
         }

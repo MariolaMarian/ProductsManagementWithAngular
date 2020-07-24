@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Form } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, FormArray} from '@angular/forms';
 import {
   PropertyToOrderBy,
   OrderProperty,
@@ -9,8 +9,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryService } from '../services/category.service';
 import { AlertifyService } from '../services/alertify.service';
 import { OrderType, Order } from '../helpers/order-type';
-import { IProductsFiltersForm } from '../helpers/products-filters-form.interface';
-import { IItemWithId } from '../interfaces/item-with-id.interface';
 
 @Component({
   selector: 'app-manage-filters',
@@ -19,7 +17,7 @@ import { IItemWithId } from '../interfaces/item-with-id.interface';
 })
 export class ManageFiltersComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: IProductsFiltersForm,
+    @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ManageFiltersComponent>,
     private categoryService: CategoryService,
@@ -29,6 +27,7 @@ export class ManageFiltersComponent implements OnInit {
   get orderByForms() {
     return this.mainForm.get('ordersBy') as FormArray;
   }
+
   properties: PropertyToOrderBy[];
   orders: OrderType[];
   categories: CategorySimple[];
@@ -60,20 +59,20 @@ export class ManageFiltersComponent implements OnInit {
     });
 
     if (this.data) {
-      this.mainForm.setValue(this.data);
-      this.data.categoriesInfo.selectedCategories?.forEach((item) => {
-        this.mainForm.controls.categoriesInfo.patchValue({
-          selectedCategories: item,
-        });
+      this.mainForm.patchValue(this.data);
+      this.data.ordersBy.forEach(element => {
+        const order = this.orders.find(x => x.id === element.order.id);
+        this.addOrderBy(element.property, order);
       });
     }
   }
 
-  addOrderBy() {
+
+  addOrderBy(property = this.properties[0], order = this.orders[1]) {
     if (this.isOrdersValid()) {
       const orderByForm = this.fb.group({
-        property: this.properties[0],
-        order: this.orders[1],
+        property,
+        order
       });
 
       this.orderByForms.push(orderByForm);

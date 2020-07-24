@@ -111,6 +111,7 @@ namespace ProductsMngmtAPI
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IProductCategoryUnitOfWork, ProductCategoryUnitOfWork>();
+            services.AddScoped<ICategoryUserCategoryUnitOfWork, CategoryUserCategoryUnitOfWork>();
 
             services.AddControllers(opt =>
             {

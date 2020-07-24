@@ -13,6 +13,12 @@ namespace ProductsMngmtAPI.Controllers
         {
             _emailService = emailService;
         }
+        
+        /// <summary>
+        /// Sends email to customer, that his order was reqistered and to the owner of application
+        /// </summary>
+        /// <response code="200">Both emails were sent successfully</response>
+        /// <response code="400">An error occured trying to send email</response>
         [HttpPost]
         public IActionResult SendEmail(EmailForSentDTO email)
         {

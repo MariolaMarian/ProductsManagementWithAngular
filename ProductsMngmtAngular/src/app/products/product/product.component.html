@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <mat-card class="col-md-8 col-lg-6 col-xl-4 p-4 editIconBackground">
+    <mat-card class="col-md-8 col-lg-6 col-xl-4 p-4 h-100 editIconBackground">
 
       <div class="textCenter">
         <div class="productImg">
@@ -12,13 +12,12 @@
 
         <h1>{{product.name}}</h1>
 
-        <!--
-          <div>
-            <ngx-barcode [bc-value]="5901478006981" [bc-display-value]="true"></ngx-barcode>
-          </div>
-          -->
+        <div class="d-flex justify-content-center">
+          <ngx-barcode6 [bc-format]="'CODE128'" [bc-value]="product.barecode" [bc-display-value]="true">
+          </ngx-barcode6>
+        </div>
 
-        <h2>{{product.barecode}}</h2>
+        <!--<h2>{{product.barecode}}</h2> -->
 
         <h3>{{product.category.name}}</h3>
 
@@ -34,10 +33,10 @@
         <app-expiration-date-in-product *ngFor="let expirationDate of product.expirationDates" [expirationDate]="expirationDate" [maxDays]="product.maxDays"></app-expiration-date-in-product>
         <div class="row d-flex justify-content-center">
           <div class="d-flex justify-content-center">
-              <pagination class="mx-auto" [boundaryLinks]="true" [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="loadExpirationDates($event)">
-              </pagination>
+            <pagination class="mx-auto" [boundaryLinks]="true" [(ngModel)]="currentPage" [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="loadExpirationDates($event)">
+            </pagination>
           </div>
-      </div>
+        </div>
       </div>
 
     </mat-card>

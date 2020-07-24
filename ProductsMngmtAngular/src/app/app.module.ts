@@ -15,8 +15,10 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
 import { AuthorizationService } from './services/authorization.service';
 
 // import { NgxBarcodeModule } from 'ngx-barcode';
+import { NgxBarcode6Module } from 'ngx-barcode6';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { NgxLoadingModule } from 'ngx-loading';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -89,8 +91,9 @@ export function tokenGetter(){
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
+      NgxBarcode6Module,
       ZXingScannerModule,
-      // NgxBarcodeModule,
+      NgxLoadingModule.forRoot({}),
       NgbModule,
       AppMaterialModule,
       PaginationModule.forRoot(),

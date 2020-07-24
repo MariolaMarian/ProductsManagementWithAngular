@@ -40,7 +40,7 @@
                     <div class="col-12 col-md-5">
                         <mat-form-field class="sidesMargin">
                             <mat-label>Property</mat-label>
-                            <mat-select formControlName="property">
+                            <mat-select formControlName="property" [compareWith]="compareByValue">
                                 <mat-option *ngFor="let property of properties" [value]="property">{{property.name}}</mat-option>
                             </mat-select>
                         </mat-form-field>

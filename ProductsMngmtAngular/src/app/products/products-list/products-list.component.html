@@ -1,6 +1,8 @@
 <!--Actual content START-->
 <div class="container-fluid">
 
+    <ngx-loading [show]="loading"></ngx-loading>
+
     <div class="row listHeader justify-content-center">
         <button *ngIf="authService.matchesRoles(['Admin','Manager','TeamLeader'])" mat-raised-button color="accent" (click)="showAddProductDialog()"><i class="fa fa-plus"></i></button>
         <button mat-raised-button color="primary" (click)="showFilterDialog()">Manage filters</button>
