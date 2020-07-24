@@ -1,4 +1,4 @@
-import { IItemWithId } from '../interfaces/item-with-id.interface';
+import { IItemWithId } from '../../interfaces/item-with-id.interface';
 import { ExpirationDate } from './expiration-date.model';
 
 export class ExpirationDateForUpdate implements IItemWithId{

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ExpirationDate } from '../models/expiration-date.model';
+import { ExpirationDate } from '../models/expiration-date/expiration-date.model';
 
 @Injectable({
   providedIn: 'root'

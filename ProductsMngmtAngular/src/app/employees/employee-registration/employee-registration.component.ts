@@ -4,9 +4,7 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  FormControl,
 } from '@angular/forms';
-import { EmployeeForRegistration } from 'src/app/models/employee-register.model';
 import { AuthorizationService } from 'src/app/services/authorization.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -14,7 +12,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { cantContainValidator } from 'src/app/validators/cantContain.validator';
 import { noEmptySpacesValidator } from 'src/app/validators/noEmptySpaces.validator';
 import { IEmployee } from 'src/app/interfaces/employee.interface';
-import { Employee } from 'src/app/models/employee.model';
+import { EmployeeForRegistration } from 'src/app/models/employee/employee-register.model';
+import { Employee } from 'src/app/models/employee/employee.model';
 
 @Component({
   selector: 'app-employee-registration',

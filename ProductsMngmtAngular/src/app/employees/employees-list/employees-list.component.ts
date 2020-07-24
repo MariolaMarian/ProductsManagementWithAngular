@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Employee } from 'src/app/models/employee.model';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeRegistrationComponent } from '../employee-registration/employee-registration.component';
+import { Employee } from 'src/app/models/employee/employee.model';
 
 @Component({
   selector: 'app-employees-list',

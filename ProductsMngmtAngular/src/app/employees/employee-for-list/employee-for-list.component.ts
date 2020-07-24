@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Employee } from 'src/app/models/employee.model';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeRegistrationComponent } from '../employee-registration/employee-registration.component';
 import { IEmployee } from 'src/app/interfaces/employee.interface';
 import { UserService } from 'src/app/services/user.service';
 import { Subscription } from 'rxjs';
+import { Employee } from 'src/app/models/employee/employee.model';
 
 @Component({
   selector: 'app-employee-for-list',

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Category } from '../models/category.model';
-import { map } from 'rxjs/operators';
+import { Category } from '../models/category/category.model';
 
 @Injectable({
   providedIn: 'root',

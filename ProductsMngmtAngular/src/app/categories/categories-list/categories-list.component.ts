@@ -1,8 +1,7 @@
 import { OnInit, Component } from '@angular/core';
-import { Category } from 'src/app/models/category.model';
+import { Category } from 'src/app/models/category/category.model';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
-import { ThrowStmt } from '@angular/compiler';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationComponent } from 'src/app/confirmation/confirmation.component';

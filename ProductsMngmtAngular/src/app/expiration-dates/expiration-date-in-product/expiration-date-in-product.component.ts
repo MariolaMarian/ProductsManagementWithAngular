@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExpirationDate } from 'src/app/models/expiration-date.model';
-import { ClassHelperService } from 'src/app/helpers/class-helper.service';
 import { ExpirationDateService } from 'src/app/services/expiration-date.service';
-import { ExpirationDateForUpdate } from 'src/app/models/expiration-date-for-update';
+import { ExpirationDateForUpdate } from 'src/app/models/expiration-date/expiration-date-for-update';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { ExpirationDate } from 'src/app/models/expiration-date/expiration-date.model';
+import { ClassHelperService } from 'src/app/shared/helpers/class-helper.service';
 
 @Component({
   selector: 'app-expiration-date-in-product',

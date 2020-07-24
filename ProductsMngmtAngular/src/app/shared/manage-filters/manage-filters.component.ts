@@ -1,13 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray} from '@angular/forms';
-import {
-  PropertyToOrderBy,
-  OrderProperty,
-} from 'src/app/helpers/property-to-order-by';
 import { CategorySimple } from 'src/app/models/category/category-simple';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CategoryService } from '../services/category.service';
-import { AlertifyService } from '../services/alertify.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { AlertifyService } from '../../services/alertify.service';
+import { PropertyToOrderBy, OrderProperty } from '../helpers/property-to-order-by';
 import { OrderType, Order } from '../helpers/order-type';
 
 @Component({

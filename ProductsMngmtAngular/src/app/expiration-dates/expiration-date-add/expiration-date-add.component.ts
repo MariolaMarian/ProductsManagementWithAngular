@@ -1,13 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Product } from 'src/app/products/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExpirationDateService } from 'src/app/services/expiration-date.service';
-import { ExpirationDate } from 'src/app/models/expiration-date.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DateLaterThanTodayValidator } from 'src/app/validators/dateLaterThanToday.validator';
-import { ExpirationDateForCreate } from 'src/app/models/expiration-date-register.model';
+import { ExpirationDate } from 'src/app/models/expiration-date/expiration-date.model';
+import { ExpirationDateForCreate } from 'src/app/models/expiration-date/expiration-date-register.model';
+import { Product } from 'src/app/models/product/product.model';
 
 @Component({
   selector: 'app-expiration-date-add',

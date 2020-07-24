@@ -1,7 +1,7 @@
-import { IEmployeeRoles } from '../interfaces/employee-roles.interface';
-import { CategorySimple } from './category/category-simple';
-import { IEmployeePersonalData } from '../interfaces/employee-personal-data.interface';
-import { IEmployee } from '../interfaces/employee.interface';
+import { IEmployeePersonalData } from 'src/app/interfaces/employee-personal-data.interface';
+import { IEmployeeRoles } from 'src/app/interfaces/employee-roles.interface';
+import { CategorySimple } from '../category/category-simple';
+import { IEmployee } from 'src/app/interfaces/employee.interface';
 
 export class EmployeeForRegistration {
   id: string;

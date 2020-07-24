@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, take, first } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
-import { EmployeeLogin } from '../models/employee-login.model';
-import { EmployeeForRegistration } from '../models/employee-register.model';
+import { EmployeeLogin } from '../models/employee/employee-login.model';
+import { EmployeeForRegistration } from '../models/employee/employee-register.model';
 
 @Injectable({
   providedIn: 'root',

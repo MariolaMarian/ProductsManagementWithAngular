@@ -1,10 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/products/models/product.model';
-import { ExpDatesHelperService } from 'src/app/helpers/exp-dates-helper.service';
-import { ExpirationDate } from 'src/app/models/expiration-date.model';
-import { ClassHelperService } from 'src/app/helpers/class-helper.service';
-import { ExpirationDateService } from 'src/app/services/expiration-date.service';
-import { FilterParam } from 'src/app/helpers/filter-param';
+import { Product } from 'src/app/models/product/product.model';
+import { ClassHelperService } from 'src/app/shared/helpers/class-helper.service';
 
 @Component({
   selector: 'app-product-small',
